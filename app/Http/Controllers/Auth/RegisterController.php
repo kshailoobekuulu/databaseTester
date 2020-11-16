@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:70'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ], [], $this->getFieldNames());
     }
 
     /**
@@ -71,5 +71,14 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    protected function getFieldNames(){
+        return [
+            'name' => __('messages.Name'),
+            'surname' => __('messages.Surname'),
+            'email' => __('messages.E-MailAddress'),
+            'password' => __('messages.Password'),
+        ];
     }
 }
