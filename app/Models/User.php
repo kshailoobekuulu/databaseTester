@@ -47,4 +47,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerifyEmail);
     }
+
+    public function roles(){
+        return $this->belongsToMany(Roles::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
+    }
 }
