@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\CheckRole;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if ( $request->user()->roles->where('role_name', 'super_admin')->first() || $request->user()->roles->where('role_name', 'admin')->first() ) {
+        if ( CheckRole::isAdmin($request->user()) ) {
             return $next($request);
         }
         return redirect(route('home'));

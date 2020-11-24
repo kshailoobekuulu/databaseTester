@@ -2,6 +2,8 @@
 
 return [
 
+    'superadmin_password' => env('SUPER_PASSWORD', 'REwq$#21'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

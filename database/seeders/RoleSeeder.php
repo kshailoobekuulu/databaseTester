@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -13,13 +15,16 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $super_admin = new \App\Models\Roles();
-        $admin = new \App\Models\Roles();
-        $super_admin->role_name = 'super_admin';
-        $super_admin->slug = 'super-admin';
-        $admin->role_name = 'admin';
-        $admin->slug = 'admin';
-        $super_admin->save();
-        $admin->save();
+        //Seeding super admin role
+        $super_admin = Role::create([
+            'type' => Role::SUPER_ADMIN,
+            'slug' => 'super-admin',
+        ]);
+
+        //Seeding admin role
+        $admin = Role::create([
+            'type' => Role::ADMIN,
+            'slug' => 'admin',
+        ]);
     }
 }

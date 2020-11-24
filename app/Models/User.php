@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-use App\Utility\VerifyEmail;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Auth\AuthMustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends AuthMustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -43,12 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function sendEmailVerificationNotification()
-    {
-        $this->notify(new VerifyEmail);
-    }
-
     public function roles(){
-        return $this->belongsToMany(Roles::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Utility;
+namespace App\Notifications;
 use Illuminate\Auth\Notifications\VerifyEmail as EmailVerification;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Lang;
