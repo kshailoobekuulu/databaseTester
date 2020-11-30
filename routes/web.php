@@ -12,4 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Frontend Routes
+Route::namespace('FrontEnd')->group(function (){
+    Route::get('/', 'TaskController@index')->name('home');
+});
 Auth::routes(['verify' => true]);

@@ -23,4 +23,9 @@ return [
     'IfYouAreHavingTroubleClickingThButtonCopyAndPasteTheURLBelowIntoYourWebBrowser' => 'Эгер :actionText баскычы иштебесе, анда төмөнкү шилтемени колдонуңуз:',
     'Regards' => 'Урматтоо менен',
     'Hello' => 'Саламатсызбы',
+    'Categories' => 'Категориялар',
+    'Tasks' => 'Көнүгүүлөр',
+    'NotSolved' => 'Чыгара элексиз',
+    'Solutions' => 'Чыгарган адамдардын саны',
+    'Solved' => 'Чыгаргансыз',
 ];

@@ -10903,3 +10903,22 @@ a.text-dark:focus {
   }
 }
 
+@media (min-width: 768px) {
+  .border-sm-none {
+    border: none !important;
+  }
+}
+
+body {
+  color: #3c3e90;
+}
+
+.main-text-color {
+  color: #3c3e90 !important;
+}
+
+.attribute {
+  font-size: 12px;
+  color: rgba(100, 100, 100, 0.5);
+}
+

@@ -43,4 +43,8 @@ class User extends AuthMustVerifyEmail
     public function roles(){
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
     }
+    public function solvedTasks(){
+        return $this->belongsToMany(Task::class, 'user_tasks', 'user_id', 'role_id')
+            ->withPivot(['correct_solution', 'solved_at']);;
+    }
 }
