@@ -10917,6 +10917,22 @@ body {
   color: #3c3e90 !important;
 }
 
+.main-link-color {
+  color: rgba(60, 62, 144, 0.5) !important;
+}
+
+.main-link-color:hover {
+  color: rgba(60, 62, 144, 0.9) !important;
+}
+
+.main-link-color:focus {
+  color: rgba(60, 62, 144, 0.9) !important;
+}
+
+.active-link {
+  color: rgba(60, 62, 144, 0.9) !important;
+}
+
 .attribute {
   font-size: 12px;
   color: rgba(100, 100, 100, 0.5);

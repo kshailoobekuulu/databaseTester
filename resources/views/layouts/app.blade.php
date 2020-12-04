@@ -26,6 +26,7 @@
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('img/Manas_logo.png') }}" alt="" style="width: 50px; height: 50px">
                 </a>
+                @yield('headerTitle')
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -39,26 +40,29 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        @yield('additionalNavLinks')
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item border-bottom border-sm-none">
-                                    <a class="main-text-color nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
+                                    <a class="main-link-color nav-link @if(Route::is('login')) active-link @endif"
+                                       href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="main-text-color nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
+                                    <a class="main-link-color nav-link @if(Route::is('register')) == 'register') active-link @endif"
+                                       href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown border-bottom border-sm-none">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle main-link-color" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right arise" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item main-link-color" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('messages.Logout') }}
@@ -75,9 +79,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <div class="container">
+            @include('messages.success')
             @yield('content')
-        </main>
+        </div>
     </div>
 </body>
 </html>
