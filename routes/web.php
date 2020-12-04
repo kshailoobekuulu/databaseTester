@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Admin Routes
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('verified')->group(function(){
+    Route::resource('tasks', 'TaskController');
+    Route::resource('categories', 'CategoryController')->except('show')->scoped(['category' => 'slug']);
+});
+
 //Frontend Routes
 Route::namespace('FrontEnd')->group(function (){
     Route::get('/', 'TaskController@index')->name('home');
