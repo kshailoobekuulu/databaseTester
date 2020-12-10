@@ -18,11 +18,7 @@
                 <td class="border">{{ $category->getSlug() }}</td>
                 <td class="border">
                     <a href="{{ route('admin.categories.edit', $category->getSlug()) }}" class="btn btn-info">{{ __('messages.Edit') }}</a>
-                    <form class="d-inline-block" action="{{ route('admin.categories.destroy', $category->getSlug()) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">{{ __('messages.Delete') }}</button>
-                    </form>
+                    @include('admin.deleteAction', ['deleteTitle' => __('messages.AreYouSureToDeleteThisCategory'), 'route' => route('admin.categories.destroy', $category->slug)])
                 </td>
             </tr>
         @endforeach

@@ -7,6 +7,7 @@
         <form class="card-body" action="{{ route('admin.categories.update', $category->getSlug()) }}" method="POST">
             @method('PUT')
             @include('admin.categories.form')
+            <button type="submit" class="btn btn-info">{{ __('messages.Edit') }}</button>
         </form>
     </div>
 @endsection

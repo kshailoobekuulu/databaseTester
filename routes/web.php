@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Admin Routes
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('verified')->group(function(){
+    Route::view('/', 'admin.mainPage')->name('mainPage');
     Route::resource('tasks', 'TaskController');
     Route::resource('categories', 'CategoryController')->except('show')->scoped(['category' => 'slug']);
 });

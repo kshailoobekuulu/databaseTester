@@ -91,6 +91,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($this->categoryService->removeCategory($category)) {
+            return back()->with('success', __('messages.CategoryDeletedSuccessfully'));
+        }
     }
 }

@@ -10,9 +10,8 @@
 <div class="form-group">
     <label for="slug">{{ __('messages.Slug') }}</label> <br>
     <input class="form-control @error('slug') border-danger @enderror" type="text" id="slug" name="slug" required
-           value="{{ old('slug') ?: (isset($category) ? $category->getTitle() : '') }}">
+           value="{{ old('slug') ?: (isset($category) ? $category->getSlug() : '') }}">
     @error('slug')
         <small id="emailHelp" class="text-danger">{{ $message }}</small>
     @enderror
 </div>
-<button type="submit" class="btn btn-info">{{ __('messages.Edit') }}</button>

@@ -29,4 +29,8 @@ class CategoryService
         $category->save();
     }
 
+    public function removeCategory($category){
+        return $category->delete();
+    }
+
 }

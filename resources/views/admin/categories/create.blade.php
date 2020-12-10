@@ -6,6 +6,7 @@
         </h1>
         <form class="card-body" action="{{ route('admin.categories.store') }}" method="POST">
             @include('admin.categories.form')
+            <button type="submit" class="btn btn-success">{{ __('messages.Create') }}</button>
         </form>
     </div>
 @endsection

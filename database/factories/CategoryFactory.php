@@ -21,9 +21,9 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->unique()->text(10);
+        $name = $this->faker->slug(1);
         return [
-            'title' => $name,
+            'title' => ucwords($name),
             'slug' => $name
         ];
     }

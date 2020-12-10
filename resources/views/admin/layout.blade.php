@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('headerTitle')
-    <h3>{{ __('messages.Administration') }}</h3>
+    <a class="h5 text-decoration-none main-text-color" href="{{ route('admin.mainPage') }}">{{ __('messages.Administration') }}</a>
 @endsection
 @section('additionalNavLinks')
     <li class="nav-item border-bottom border-sm-none">

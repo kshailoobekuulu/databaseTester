@@ -79,7 +79,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container mt-2">
             @include('messages.success')
             @yield('content')
         </div>
