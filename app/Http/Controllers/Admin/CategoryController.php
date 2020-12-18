@@ -75,19 +75,19 @@ class CategoryController extends Controller
      *
      * @param Request $request
      * @param Category $category
-     * @return Redirector
+     * @return RedirectResponse
      */
     public function update(Request $request, Category $category)
     {
         $this->categoryService->storeOrUpdateCategory($request, $category);
-        return redirect(route('admin.categories.index'))->with('success', __('messages.CategoryUpdatedSuccessfully'));
+        return \redirect(route('admin.categories.index'))->with('success', __('messages.CategoryUpdatedSuccessfully'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function destroy(Category $category)
     {

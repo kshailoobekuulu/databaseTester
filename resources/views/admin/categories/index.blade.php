@@ -18,11 +18,15 @@
                 <td class="border">{{ $category->getSlug() }}</td>
                 <td class="border">
                     <a href="{{ route('admin.categories.edit', $category->getSlug()) }}" class="btn btn-info">{{ __('messages.Edit') }}</a>
-                    @include('admin.deleteAction', ['deleteTitle' => __('messages.AreYouSureToDeleteThisCategory'), 'route' => route('admin.categories.destroy', $category->slug)])
+                    <button type="button" class="btn btn-danger delete-button" data-toggle="modal" data-target="#deleteModal"
+                            data-route="{{route('admin.categories.destroy', $category->getSlug())}}">
+                        {{ __('messages.Delete') }}
+                    </button>
                 </td>
             </tr>
         @endforeach
     </table>
+    @include('admin.deleteModal', ['deleteTitle' => __('messages.AreYouSureToDeleteThisCategory')])
     <div class="m-2">
         {{ $categories->links() }}
     </div>

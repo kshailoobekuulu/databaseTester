@@ -2,12 +2,14 @@
 
 
 namespace App\Validators;
-
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryValidator
-{
+class CategoryValidator{
+
+    public function validate(Request $request, $category = null){
+        $request->validate($this->getValidationRules($category), [], $this->getFieldNames());
+    }
+
     public function getFieldNames(){
         return [
             'title' => __('messages.Category'),
@@ -15,14 +17,15 @@ class CategoryValidator
         ];
     }
     public function getValidationRules($category){
-        $id = $category ? ',' . $category->id : '';
+        $id = $category ? ',' . $category->getId() : '';
         return [
-            'title' => 'bail|required|max:255|unique:categories,slug' . $id,
-            'slug' => 'bail|required|max:255|unique:categories,title' . $id,
+            'title' => 'required|max:255|unique:categories,title' . $id,
+            'slug' => [
+                'required',
+                'regex:/^[a-zA-Z0-9]+[A-Za-z0-9_-]*[a-zA-Z0-9]$/',
+                'max:255',
+                'unique:categories,slug' . $id,
+            ]
         ];
-    }
-
-    public function validate(Request $request, $category = null){
-        $request->validate($this->getValidationRules($category), [], $this->getFieldNames());
     }
 }

@@ -7,21 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $validationRules = [
-        'title' => 'bail|required|max:255',
-        'slug' => 'bail|required|max:255|unique:categories,slug',
-    ];
-    use HasFactory;
 
-    public function getFieldNames(){
-        return [
-           'title' => __('messages.CategoryName'),
-           'slug' => __('messages.Slug')
-        ];
-    }
-    public function getValidationRules(){
-        return $this->validationRules;
-    }
+    use HasFactory;
+    public static $tableName = 'categories';
+
     public function getId(){
         return $this->id;
     }

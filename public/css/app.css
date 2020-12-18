@@ -10938,3 +10938,7 @@ body {
   color: rgba(100, 100, 100, 0.5);
 }
 
+.min-vh-80 {
+  min-height: 80vh !important;
+}
+
