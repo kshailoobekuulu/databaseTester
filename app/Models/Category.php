@@ -11,6 +11,11 @@ class Category extends Model
     use HasFactory;
     public static $tableName = 'categories';
 
+    public function getRouteKeyName() : string
+    {
+        return 'slug';
+    }
+
     public function getId(){
         return $this->id;
     }

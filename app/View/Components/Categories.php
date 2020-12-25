@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Category;
 use Illuminate\View\Component;
 
 class Categories extends Component
@@ -25,6 +26,7 @@ class Categories extends Component
      */
     public function render()
     {
-        return view('components.categories');
+        $categories = Category::all();
+        return view('components.categories', compact('categories'));
     }
 }

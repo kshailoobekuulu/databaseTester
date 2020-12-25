@@ -9,21 +9,17 @@
                 <div class="card-header d-none d-md-block font-weight-bolder">
                      {{ __('messages.Categories') }}
                 </div>
+                @foreach($categories as $category)
                     <li class="nav-item border-bottom">
-                        <a href="{{ route('home')}}"
-                           class="main-text-color nav-link pl-3 btn text-left">
-{{--                       @if($selectedCategory && $selectedCategory->id == $categoryItem['id'])--}}
-{{--                               font-weight-bold--}}
-{{--                       @endif ">--}}
-                            Категория 1
+                        <a href="{{ route('frontend.tasks.index', ['category' => $category->getSlug()])}}"
+                           class="main-text-color nav-link pl-3 btn text-left
+                           @if($currentCategoryId && $currentCategoryId == $category->getId())
+                                   font-weight-bold
+                           @endif ">
+                            {{ $category->getTitle() }}
                         </a>
                     </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{ route('home')}}"
-                       class="nav-link pl-3 btn text-left main-text-color">
-                        Категория 2
-                    </a>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
