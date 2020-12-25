@@ -17,7 +17,10 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->text('solution');
+            $table->string('type', 6);
+            $table->text('mysql_solution');
+            $table->text('postgre_solution');
+            $table->text('mssql_solution');
             $table->boolean('active')->default(false);
             $table->timestamps();
         });
