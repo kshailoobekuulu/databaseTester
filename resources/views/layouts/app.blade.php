@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">
+                <a class="navbar-brand" href="{{ route('frontend.home') }}">
                     <img src="{{ asset('img/Manas_logo.png') }}" alt="" style="width: 50px; height: 50px">
                 </a>
                 @yield('headerTitle')
@@ -79,8 +79,9 @@
             </div>
         </nav>
 
-        <div class="container mt-2 min-vh-80">
+        <div class="container mt-3 min-vh-80">
             @include('messages.success')
+            @include('messages.error')
             @yield('content')
         </div>
     </div>
