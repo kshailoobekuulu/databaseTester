@@ -47,6 +47,14 @@ $(document).ready(function() {
         }
     }
 
+    $('#correctSolutionButton').click(function () {
+        $('#correctSolution').slideToggle();
+    });
+
+    $('#lastSolutionButton').click(function () {
+        $('#lastSolution').slideToggle();
+    });
+
 });
 
 

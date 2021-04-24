@@ -20,9 +20,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['verifie
 });
 
 //Frontend Routes
-Route::namespace('FrontEnd')->name('frontend.')->group(function (){
-    Route::resource('tasks', 'TaskController')->only(['index', 'show'])->middleware(['auth', 'verified']);
-    Route::post('submit-solution/{task}', 'TaskController@checkSolution')->name('submit-solution')->middleware(['auth', 'verified']);
-    Route::view('/', 'frontend.home')->name('home');
+Route::namespace('FrontEnd')
+        ->name('frontend.')
+        ->middleware(['web' ,'auth', 'verified'])
+        ->group(function (){
+    Route::resource('tasks', 'TaskController')->only(['index', 'show']);
+    Route::post('submit-solution/{task}', 'TaskController@checkSolution')->name('submit-solution');
 });
+Route::view('/', 'frontend.home')->name('frontend.home');
 Auth::routes(['verify' => true]);

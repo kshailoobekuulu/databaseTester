@@ -63,4 +63,6 @@ return [
     'WriteCodeBelow' => 'Кодуңузду төмөнкү талаага жазыңыз',
     'ChooseSyntax' => 'Синтаксис тандаңыз',
     'SubmitSolution' => 'Текшерүү',
+    'ShowMyCorrectSolution' => 'Акыркы туура чыгарылыш',
+    'ShowLastSolution' => 'Акыркы чыгарылыш'
 ];

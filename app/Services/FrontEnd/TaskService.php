@@ -32,10 +32,12 @@ class TaskService {
     }
 
     public function checkSolution(Request $request, $task){
-        $repository = resolve($request->syntax);
+        $user = $request->user();
+        $user->solvedTasks()->updateExistingPivot($task->id, ['last_solution' => $request->solution]);
+        $database = resolve($request->syntax);
         $syntax = $request->syntax;
-        $correctSolution = $repository->select($task->$syntax);
-        $userSolution = $repository->select($request->solution);
+        $correctSolution = $database->select($task->$syntax);
+        $userSolution = $database->select($request->solution);
         if(count($correctSolution) != count($userSolution)) {
             return false;
         }
@@ -45,8 +47,7 @@ class TaskService {
                 return false;
             }
         }
-        $request->user()->solvedTasks()->detach($task);
-        $request->user()->solvedTasks()->attach($task, ['correct_solution' => $request->solution, 'solved_at' => now()]);
+        $user->solvedTasks()->updateExistingPivot($task->id, ['correct_solution' => $request->solution, 'solved_at' => now()]);
         return true;
     }
 }
