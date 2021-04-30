@@ -9,6 +9,15 @@
                 <div class="card-header d-none d-md-block font-weight-bolder">
                      {{ __('messages.Categories') }}
                 </div>
+                <li class="nav-item border-bottom">
+                    <a href="{{ route('frontend.tasks.index')}}"
+                       class="main-text-color nav-link pl-3 btn text-left
+                           @if(!$currentCategoryId)
+                                font-weight-bold
+                           @endif ">
+                        {{ __("messages.AllTasks") }}
+                    </a>
+                </li>
                 @foreach($categories as $category)
                     <li class="nav-item border-bottom">
                         <a href="{{ route('frontend.tasks.index', ['category' => $category->getSlug()])}}"
