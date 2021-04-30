@@ -49,6 +49,10 @@ class User extends AuthMustVerifyEmail
         return ucfirst($this->name) . ' ' . ucfirst($this->surname);
     }
 
+    public function getRole() {
+        return $this->role;
+    }
+
     public function roles(){
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
     }
