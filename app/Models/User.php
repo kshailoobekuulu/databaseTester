@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends AuthMustVerifyEmail
 {
+    const SUPER_ADMIN = 'superadmin';
     use HasFactory;
 
     /**
@@ -40,11 +41,19 @@ class User extends AuthMustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getFullName() {
+        return ucfirst($this->name) . ' ' . ucfirst($this->surname);
+    }
+
     public function roles(){
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')->withTimestamps();
     }
     public function solvedTasks(){
         return $this->belongsToMany(Task::class, 'user_tasks', 'user_id', 'task_id')
-            ->withPivot(['correct_solution', 'solved_at']);;
+            ->withPivot(['correct_solution', 'last_solution', 'solved_at']);
     }
 }

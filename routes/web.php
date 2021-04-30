@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['verifie
     Route::view('/', 'admin.mainPage')->name('mainPage');
     Route::resource('tasks', 'TaskController');
     Route::resource('categories', 'CategoryController')->except('show')->scoped(['category' => 'slug']);
+    Route::resource('users', 'UserController');
 });
 
 //Frontend Routes

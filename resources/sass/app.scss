@@ -58,4 +58,16 @@ body{
     }
 }
 
+.profile-photo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+
+    @media screen and(max-width: 576px) {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+
 

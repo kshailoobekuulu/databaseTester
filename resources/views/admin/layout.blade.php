@@ -11,4 +11,8 @@
         <a class="nav-link main-link-color @if(Route::currentRouteName() == 'admin.categories.index') active-link @endif"
            href="{{ route('admin.categories.index') }}">{{ __('messages.Categories') }}</a>
     </li>
+    <li class="nav-item border-bottom border-sm-none">
+        <a class="nav-link main-link-color @if(Route::currentRouteName() == 'admin.users.index') active-link @endif"
+           href="{{ route('admin.users.index') }}">{{ __('messages.Users') }}</a>
+    </li>
 @endsection
