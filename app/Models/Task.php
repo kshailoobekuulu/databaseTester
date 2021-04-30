@@ -61,7 +61,7 @@ class Task extends Model
     /**
      * @return mixed
      */
-    public function getMySqlSolution(){
+    public function mysql(){
         return $this->mysql_solution;
     }
 
@@ -75,7 +75,7 @@ class Task extends Model
     /**
      * @return mixed
      */
-    public function getPostgreSolution(){
+    public function postgre(){
         return $this->postgre_solution;
     }
 
@@ -89,7 +89,7 @@ class Task extends Model
     /**
      * @return mixed
      */
-    public function getMsSqlSolution(){
+    public function mssql(){
         return $this->mssql_solution;
     }
 
@@ -116,7 +116,7 @@ class Task extends Model
 
     public function solvedBy(){
         return $this->belongsToMany(User::class, 'user_tasks', 'task_id', 'user_id')
-            ->withPivot(['correct_solution', 'solved_at']);
+            ->withPivot(['correct_solution', 'last_solution', 'solved_at']);
     }
 
     public function categories(){

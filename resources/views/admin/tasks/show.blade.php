@@ -12,21 +12,21 @@
         <h5 class="font-weight-bold">{{ __('messages.CorrectSolutions') }}</h5>
         <ul>
             <li>
-                MySql
+                {{ __('messages.mysql') }}
                 <ul>
-                    <li>{{ $task->getMySqlSolution() }}</li>
+                    <li>{{ $task->mysql() }}</li>
                 </ul>
             </li>
             <li>
-                PostgreSql
+                {{ __('messages.postgre') }}
                 <ul>
-                    <li>{{ $task->getPostgreSolution() }}</li>
+                    <li>{{ $task->postgre() }}</li>
                 </ul>
             </li>
             <li>
-                MsSql
+                {{ __('messages.mssql') }}
                 <ul>
-                    <li>{{ $task->getMsSqlSolution() }}</li>
+                    <li>{{ $task->mssql() }}</li>
                 </ul>
             </li>
         </ul>

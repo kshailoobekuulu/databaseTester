@@ -1,12 +1,19 @@
 <?php
 namespace App\Services\FrontEnd;
 
+use App\DatabaseModels\BaseDatabase;
 use App\Models\Category;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Validators\Frontend\TaskValidator;
 
 class TaskService {
+    protected $validator;
+    public function __construct(TaskValidator $validator) {
+        $this->validator = $validator;
+    }
+
     public function getTasks(){
         $currentUser = request()->user();
         $categoryId = null;
@@ -32,12 +39,25 @@ class TaskService {
     }
 
     public function checkSolution(Request $request, $task){
+        $this->validator->validate($request);
+        /**
+         * @var $user User
+         */
         $user = $request->user();
-        $user->solvedTasks()->updateExistingPivot($task->id, ['last_solution' => $request->solution]);
+        if ($user->solvedTasks()->where('task_id', $task->getId())->first()) {
+            $user->solvedTasks()->updateExistingPivot($task->id, ['last_solution' => $request->solution]);
+        } else {
+            $user->solvedTasks()->attach($task->getId(), ['last_solution' => $request->solution]);
+        }
+
+        /**
+         * @var $database BaseDatabase
+         */
         $database = resolve($request->syntax);
         $syntax = $request->syntax;
-        $correctSolution = $database->select($task->$syntax);
-        $userSolution = $database->select($request->solution);
+        $correctSolution = $database->select($task->$syntax());
+        $type = $task->getType();
+        $userSolution = $database->$type($request->solution);
         if(count($correctSolution) != count($userSolution)) {
             return false;
         }
@@ -47,7 +67,7 @@ class TaskService {
                 return false;
             }
         }
-        $user->solvedTasks()->updateExistingPivot($task->id, ['correct_solution' => $request->solution, 'solved_at' => now()]);
+        $user->solvedTasks()->updateExistingPivot($task->getId(), ['correct_solution' => $request->solution, 'solved_at' => now()]);
         return true;
     }
 }

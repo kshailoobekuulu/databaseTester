@@ -17,6 +17,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind('mysql', function (){
+            return new MySQL();
+        });
+        $this->app->bind('postgre', function (){
+            return new PostgreSQL();
+        });
+        $this->app->bind('mssql', function (){
+            return new MsSQL();
+        });
         $this->app->bind('mysql_solution', function (){
             return new MySQL();
         });

@@ -13,7 +13,7 @@
                 <label for="solution">
                     {{ __('messages.WriteCodeBelow') }}
                 </label> <br>
-                <textarea name="solution" id="solution" rows="10" class="form-control
+                <textarea name="solution" id="solution" rows="10" required class="form-control
                         @error('solution') border-danger @enderror">{{ old('solution') }}</textarea>
                 @error('solution')
                     <small class="text-danger">
@@ -23,11 +23,16 @@
 
                 <div class="w-75 ml-auto mt-2">
                     <label for="syntax">{{ __('messages.ChooseSyntax') }}</label>
-                    <select name="syntax" id="syntax" class="form-control">
-                        <option value="mysql_solution">MySQL</option>
-                        <option value="postgre_solution">PostgreSQL</option>
-                        <option value="mysql_solution">MsSQL Server</option>
+                    <select name="syntax" id="syntax" class="form-control @error('syntax') border-danger @enderror">
+                        @foreach($availableSyntax as $syntax)
+                            <option value="{{ $syntax }}">{{ __('messages.' . $syntax) }}</option>
+                        @endforeach
                     </select>
+                    @error('syntax')
+                        <small class="text-danger">
+                            {{ $message }}
+                        </small>
+                    @enderror
                 </div>
                 <div class="w-50 text-right ml-auto mt-2">
                     <button type="submit" class="btn btn-primary">
@@ -37,22 +42,24 @@
             </form>
 
             @if(isset($solutions))
-                @if($solutions->last_solution)
-                    <button id="lastSolutionButton" class="btn btn-success mb-2">{{__('messages.ShowLastSolution')}}</button>
-                @endif
-                @if($solutions->correct_solution)
-                    <button id="correctSolutionButton" class="btn btn-success mb-2">{{__('messages.ShowMyCorrectSolution')}}</button>
-                @endif
-                    <div id="lastSolution" style="display: none">
+                <div class="row p-2">
+                    @if($solutions->last_solution)
+                        <button id="lastSolutionButton" class="btn btn-success m-1 col-12 col-md-3">{{__('messages.ShowLastSolution')}}</button>
+                    @endif
+                    @if($solutions->correct_solution)
+                        <button id="correctSolutionButton" class="btn btn-success m-1 col-12 col-md-3">{{__('messages.ShowMyCorrectSolution')}}</button>
+                    @endif
+                    <div id="lastSolution" class="col-12 mt-1" style="display: none">
                         <h6>{{__('messages.ShowLastSolution')}}</h6>
                         <pre class="p-2 border rounded">{{ $solutions->last_solution }}
                         </pre>
                     </div>
-                    <div id="correctSolution" style="display: none">
+                    <div id="correctSolution" class="col-12 mt-1" style="display: none">
                         <h6>{{ __('messages.ShowMyCorrectSolution') }}</h6>
                         <pre class="p-2 border rounded">{{ $solutions->correct_solution }}
                         </pre>
                     </div>
+                </div>
             @endif
         </div>
     </div>

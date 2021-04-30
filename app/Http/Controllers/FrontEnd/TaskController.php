@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\FrontEnd;
 
+use App\DatabaseModels\BaseDatabase;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Services\FrontEnd\TaskService;
@@ -23,7 +24,11 @@ class TaskController extends Controller {
 
     public function show(Task $task){
         $solutions = $task->solvedBy()->select(['correct_solution', 'last_solution'])->where('user_id', auth()->id())->first();
-        return view('frontend.tasks.show', ['task' => $task, 'solutions' => $solutions]);
+        return view('frontend.tasks.show', [
+            'task' => $task,
+            'solutions' => $solutions,
+            'availableSyntax' => BaseDatabase::AVAILABLE_SYNTAX
+        ]);
     }
 
     public function checkSolution(Request $request, Task $task) {
