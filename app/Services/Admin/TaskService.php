@@ -2,15 +2,17 @@
 namespace App\Services\Admin;
 
 use App\Models\Task;
-use App\Validators\TaskValidator;
+use App\Validators\Admin\TaskValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class TaskService{
 
     protected $taskValidator;
+
     /**
      * TaskService constructor.
+     * @param TaskValidator $validator
      */
     public function __construct(TaskValidator $validator)
     {

@@ -1,24 +1,21 @@
 <?php
 
 
-namespace App\Validators;
+namespace App\Validators\Admin;
 
 
 use App\DatabaseModels\BaseDatabase;
-use App\DatabaseModels\PostgreSQL;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
 class TaskValidator
 {
-    const SELECT = 'Select';
-    const UPDATE = 'Update';
-    const DELETE = 'Delete';
-    const CREATE = 'Create';
+    const SELECT = 'select';
+    const UPDATE = 'update';
+    const DELETE = 'delete';
+    const CREATE = 'create';
     public static $types = [self::SELECT, self::UPDATE, self::DELETE, self::CREATE];
     public function validate(Request $request){
         $request->validate($this->getValidationRules(), [], $this->getFieldNames());

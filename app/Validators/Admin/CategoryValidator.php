@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Validators;
+namespace App\Validators\Admin;
 use Illuminate\Http\Request;
 
 class CategoryValidator{

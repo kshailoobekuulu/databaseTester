@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Task;
-use App\Validators\TaskValidator;
+use App\Validators\Admin\TaskValidator;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TaskFactory extends Factory
@@ -25,7 +25,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->text(50),
             'description' => $this->faker->paragraph,
-            'type' => TaskValidator::$types[$this->faker->numberBetween(0, 3)],
+            'type' => TaskValidator::$types[random_int(0, 3)],
             'mysql_solution' => $this->faker->paragraph(),
             'postgre_solution' => $this->faker->paragraph(),
             'mssql_solution' => $this->faker->paragraph(),

@@ -5,7 +5,7 @@ namespace App\Services\Admin;
 
 
 use App\Models\Category;
-use App\Validators\CategoryValidator;
+use App\Validators\Admin\CategoryValidator;
 use Illuminate\Http\Request;
 
 class CategoryService
