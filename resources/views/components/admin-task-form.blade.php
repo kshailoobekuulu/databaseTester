@@ -11,9 +11,7 @@
 </div>
 <div class="form-group">
     <label for="description">{{ __('messages.TaskDescription') }}</label>
-    <textarea name="description" id="description" class="form-control @error('description') border-danger @enderror" required rows="5">
-        {{ old('description') ?: (isset($task) ? $task->getDescription() : '') }}
-    </textarea>
+    <textarea name="description" id="description" class="form-control @error('description') border-danger @enderror" required rows="5">{{ old('description') ?: (isset($task) ? $task->getDescription() : '') }}</textarea>
     @error('description')
     <small class="text-danger"> {{ $message }}</small>
     @enderror
@@ -33,9 +31,8 @@
 <p>{{ __('messages.CorrectSolutions') }}:</p>
 <div class="form-group">
     <label for="mysql_solution">MySQL</label>
-    <textarea name="mysql_solution" id="mysql_solution" class="form-control @error('mysql_solution') border-danger @enderror" required rows="5">
-        {{ old('mysql_solution') ?: (isset($task) ? $task->getMySqlSolution() : '') }}
-    </textarea>
+    <textarea name="mysql_solution" id="mysql_solution" class="form-control @error('mysql_solution') border-danger @enderror"
+              required rows="5">{{ old('mysql_solution') ?: (isset($task) ? $task->mysql() : '') }}</textarea>
     @error('mysql_solution')
     <small class="text-danger"> {{ $message }}</small>
     @enderror
@@ -43,9 +40,8 @@
 
 <div class="form-group">
     <label for="postgre_solution">PosgreSQL</label>
-    <textarea name="postgre_solution" id="postgre_solution" class="form-control @error('postgre_solution') border-danger @enderror" required rows="5">
-        {{ old('postgre_solution') ?: (isset($task) ? $task->getPostgreSolution() : '') }}
-    </textarea>
+    <textarea name="postgre_solution" id="postgre_solution" class="form-control @error('postgre_solution') border-danger @enderror"
+              required rows="5">{{old('postgre_solution') ?: (isset($task) ? $task->postgre() : '') }}</textarea>
     @error('postgre_solution')
     <small class="text-danger"> {{ $message }}</small>
     @enderror
@@ -53,10 +49,8 @@
 
 <div class="form-group">
     <label for="mssql_solution">MsSQL</label>
-    <textarea name="mssql_solution" id="mssql_solution" class="form-control
-        @error('mssql_solution') border-danger @enderror" required rows="5">
-        {{ old('mssql_solution') ?: (isset($task) ? $task->getMsSqlSolution() : '') }}
-    </textarea>
+    <textarea name="mssql_solution" id="mssql_solution" class="form-control @error('mssql_solution') border-danger @enderror"
+              required rows="5">{{ old('mssql_solution') ?: (isset($task) ? $task->mssql() : '') }}</textarea>
     @error('mssql_solution')
     <small class="text-danger"> {{ $message }}</small>
     @enderror
