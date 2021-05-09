@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class User extends AuthMustVerifyEmail
 {
     const SUPER_ADMIN = 'superadmin';
+    const ADMIN = 'admin';
     use HasFactory;
 
     /**
@@ -51,6 +52,10 @@ class User extends AuthMustVerifyEmail
 
     public function getRole() {
         return $this->role;
+    }
+
+    public function getRoleUpperCaseFirst() {
+        return ucfirst($this->role);
     }
 
     public function roles(){

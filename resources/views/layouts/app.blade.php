@@ -61,7 +61,15 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right arise" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right arise text-center" aria-labelledby="navbarDropdown">
+                                    @can('administrate')
+                                        <a href="{{ route('admin.mainPage') }}" class="dropdown-item main-link-color border-bottom">
+                                            {{ __('messages.Administration') }}
+                                        </a>
+                                    @endcan
+                                    <a href="{{ route('frontend.profile-page') }}" class="dropdown-item main-link-color border-bottom">
+                                        {{ __('messages.ProfilePage') }}
+                                    </a>
                                     <a class="dropdown-item main-link-color" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+         'App\Models\User' => 'App\Policies\ManageUsersPolicy',
     ];
 
     /**
@@ -28,6 +28,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('update-user-information', function (User $user) {
             return $user->getRole() === User::SUPER_ADMIN;
+        });
+
+        Gate::define('administrate', function (User $user) {
+            return $user->getRole() == User::SUPER_ADMIN || $user->getRole() == User::ADMIN;
         });
     }
 }

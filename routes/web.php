@@ -28,6 +28,7 @@ Route::namespace('FrontEnd')
         ->group(function (){
     Route::resource('tasks', 'TaskController')->only(['index', 'show']);
     Route::post('submit-solution/{task}', 'TaskController@checkSolution')->name('submit-solution');
+    Route::get('/profile-page', 'ProfilePageController@show')->name('profile-page');
 });
 Route::view('/', 'frontend.home')->name('frontend.home');
 Auth::routes(['verify' => true]);

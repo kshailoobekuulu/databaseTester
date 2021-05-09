@@ -76,4 +76,7 @@ return [
     'mysql' => 'MySQL',
     'mssql' => 'MS SQL Server',
     'postgre' => 'PostgreSQL',
+    'ProfilePage' => 'Жеке баракчам',
+    'YearInUniversity' => 'Курсу',
+    'Admin' => 'Админ',
 ];
