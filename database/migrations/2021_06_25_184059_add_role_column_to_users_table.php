@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class AddCheckConstraintToUsersTable extends Migration
+class AddRoleColumnToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +14,7 @@ class AddCheckConstraintToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            DB::statement("ALTER TABLE users ADD CONSTRAINT chk_role CHECK (role in ('user', 'admin', 'superadmin'));");
+            $table->foreignId('role_id')->default(3)->references('id')->on('roles');
         });
     }
 
@@ -27,7 +26,8 @@ class AddCheckConstraintToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            DB::statement('ALTER TABLE users DROP CHECK chk_role;');
+            $table->dropForeign('users_role_id_foreign');
+            $table->dropColumn('role_id');
         });
     }
 }

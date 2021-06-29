@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Task;
 use App\Services\FrontEnd\TaskService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller {
     protected $taskService;

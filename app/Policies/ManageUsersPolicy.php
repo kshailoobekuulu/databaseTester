@@ -17,7 +17,7 @@ class ManageUsersPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->getRole() === User::SUPER_ADMIN;
+        return $user->role->getType() === User::SUPER_ADMIN;
     }
 
     /**
@@ -29,7 +29,7 @@ class ManageUsersPolicy
      */
     public function view(User $user, User $model)
     {
-        return $user->getRole() == User::SUPER_ADMIN || $user->getId() == $model->getId();
+        return $user->role->getType() == User::SUPER_ADMIN || $user->getId() == $model->getId();
     }
 
     /**
@@ -40,7 +40,7 @@ class ManageUsersPolicy
      */
     public function create(User $user)
     {
-        return $user->getRole() === User::SUPER_ADMIN;
+        return $user->role->getType() === User::SUPER_ADMIN;
     }
 
     /**
@@ -52,7 +52,7 @@ class ManageUsersPolicy
      */
     public function update(User $user, User $model)
     {
-        return $user->getRole() == User::SUPER_ADMIN || $user->getId() == $model->getId();
+        return $user->role->getType() == User::SUPER_ADMIN || $user->getId() == $model->getId();
     }
 
     /**
@@ -64,7 +64,7 @@ class ManageUsersPolicy
      */
     public function delete(User $user, User $model)
     {
-        return $user->getRole() === User::SUPER_ADMIN;
+        return $user->role->getType() === User::SUPER_ADMIN;
     }
 
     /**
@@ -76,7 +76,7 @@ class ManageUsersPolicy
      */
     public function restore(User $user, User $model)
     {
-        return $user->getRole() === User::SUPER_ADMIN;
+        return $user->role->getType() === User::SUPER_ADMIN;
     }
 
     /**
@@ -88,6 +88,6 @@ class ManageUsersPolicy
      */
     public function forceDelete(User $user, User $model)
     {
-        return $user->getRole() === User::SUPER_ADMIN;
+        return $user->role->getType() === User::SUPER_ADMIN;
     }
 }

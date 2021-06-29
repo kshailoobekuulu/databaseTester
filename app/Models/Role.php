@@ -9,6 +9,7 @@ class Role extends Model
 {
     const SUPER_ADMIN = 'superadmin';
     const ADMIN = 'admin';
+    const USER = 'user';
 
     use HasFactory;
 
@@ -16,11 +17,19 @@ class Role extends Model
         return $this->type;
     }
 
+    public function getId() {
+        return $this->id;
+    }
+
     public function getTypeUpperCaseFirst() {
         return ucfirst($this->type);
     }
 
+    public function getTranslation() {
+        return __('messages.'.$this->getTypeUpperCaseFirst());
+    }
+
     public function users(){
-        return $this->belongsToMany(User::class, 'user_roles', 'role_id', 'user_id')->withTimestamps();
+        return $this->hasMany(User::class, 'role', 'id');
     }
 }

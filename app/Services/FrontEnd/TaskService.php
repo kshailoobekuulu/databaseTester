@@ -38,7 +38,7 @@ class TaskService {
         return ['tasks' => $tasks, 'currentCategoryId' => $categoryId];
     }
 
-    public function checkSolution(Request $request, $task){
+    public function checkSolution(Request $request, Task $task){
         $this->validator->validate($request);
         /**
          * @var $user User
@@ -55,9 +55,11 @@ class TaskService {
          */
         $database = resolve($request->syntax);
         $syntax = $request->syntax;
-        $correctSolution = $database->select($task->$syntax());
         $type = $task->getType();
-        $userSolution = $database->$type($request->solution);
+        $correctSolution = $database->$type($task->$syntax(), $task, $request);
+        $type = $task->getType();
+        $userSolution = $database->$type($request->solution, $task, $request);
+
         if(count($correctSolution) != count($userSolution)) {
             return false;
         }

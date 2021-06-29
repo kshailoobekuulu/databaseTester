@@ -19,10 +19,11 @@ class SuperAdminSeeder extends Seeder
 
         $super_admin = User::create([
             'name' => 'Super',
-            'email' => 'super@gmail.com',
+            'email' => config('app.superadmin_email'),
             'email_verified_at' => now(),
             'password' => bcrypt(config('app.superadmin_password')),
         ]);
-        $super_admin->roles()->attach(Role::where('type', Role::SUPER_ADMIN)->first());
+        $super_admin->role()->associate(Role::where('type', Role::SUPER_ADMIN)->first());
+        $super_admin->save();
     }
 }

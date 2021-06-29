@@ -106,10 +106,11 @@
                 <div class="col-md-6 mt-md-0 mt-3">
 
                     <!-- Content -->
-                    <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
-                        repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
-                        harum esse fugiat. Itaque, culpa?</p>
+                    <h5 class="text-uppercase font-weight-bold">Даректер</h5>
+                    <p>
+                        Башкы кампус :<br> Бишкек, Джал кичи району Тыналиев көчөсү 38/1<br>
+                        Кошумча имарат:<br> Бишкек, Чыңгыз Айтматов проспекти 56
+                    </p>
 
                 </div>
                 <!-- Grid column -->
@@ -120,10 +121,15 @@
                 <div class="col-md-6 mb-md-0 mb-3">
 
                     <!-- Content -->
-                    <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
-                        commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
-                        excepturi hic.</p>
+                    <h5 class="text-uppercase font-weight-bold">Байланыштар</h5>
+                    <p>
+                        Телефондор:<br>
+                        +996 (312) 54‒19‒42<br>
+                        +996 (312) 49‒27‒63<br>
+                        +996 (312) 49‒27‒86<br>
+
+                        Веб сайт: www.manas.edu.kg
+                    </p>
 
                 </div>
                 <!-- Grid column -->
@@ -136,7 +142,7 @@
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+            <a href="https://mdbootstrap.com/">Kubanychbek Shailoobek uulu</a>
         </div>
         <!-- Copyright -->
 

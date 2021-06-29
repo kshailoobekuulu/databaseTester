@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'superadmin_email' => env('SUPER_EMAIL', 'super@gmail.com'),
     'superadmin_password' => env('SUPER_PASSWORD', 'REwq$#21'),
 
     /*

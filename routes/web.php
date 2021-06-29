@@ -29,6 +29,9 @@ Route::namespace('FrontEnd')
     Route::resource('tasks', 'TaskController')->only(['index', 'show']);
     Route::post('submit-solution/{task}', 'TaskController@checkSolution')->name('submit-solution');
     Route::get('/profile-page', 'ProfilePageController@show')->name('profile-page');
+    Route::get('/profile-page/edit', 'ProfilePageController@edit')->name('edit-profile-page');
+    Route::post('/profile-page/edit', 'ProfilePageController@update')->name('update-profile-data');
+    Route::post('/profile-page', 'ProfilePageController@uploadPhoto')->name('upload-profile-photo');
 });
 Route::view('/', 'frontend.home')->name('frontend.home');
 Auth::routes(['verify' => true]);

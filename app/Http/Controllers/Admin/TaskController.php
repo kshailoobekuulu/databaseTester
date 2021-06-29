@@ -97,14 +97,10 @@ class TaskController extends Controller
             ->with('success', __('messages.TaskUpdatedSuccessfully'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param Task $task
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('admin.tasks.index')->with('success', __('messages.TaskDeletedSucessfully'));
     }
 }

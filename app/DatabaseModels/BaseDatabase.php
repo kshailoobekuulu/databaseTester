@@ -1,6 +1,7 @@
 <?php
 namespace App\DatabaseModels;
 
+use App\Models\Task;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -9,7 +10,7 @@ abstract class BaseDatabase{
     protected $connectionName;
     public abstract function checkSyntax($query);
 
-    public function select($query) {
+    public function select($query, $task, $request) {
 
         try {
             DB::connection($this->connectionName)->beginTransaction();
@@ -21,10 +22,12 @@ abstract class BaseDatabase{
         }
     }
 
-    public function update($query) {
+    public function update($query, $task, $request) {
         try {
             DB::connection($this->connectionName)->beginTransaction();
-            $result = DB::connection($this->connectionName)->update($query);
+            DB::connection($this->connectionName)->update($query);
+            $selectQuery = $this->getSelectForDatabase($request, $task);
+            $result = DB::connection($this->connectionName)->select($selectQuery);
             DB::connection($this->connectionName)->rollBack();
             return $result;
         } catch (\Exception $exception) {
@@ -32,10 +35,12 @@ abstract class BaseDatabase{
         }
     }
 
-    public function delete($query) {
+    public function delete($query, $task, $request) {
         try {
             DB::connection($this->connectionName)->beginTransaction();
-            $result = DB::connection($this->connectionName)->delete($query);
+            DB::connection($this->connectionName)->delete($query);
+            $selectQuery = $this->getSelectForDatabase($request, $task);
+            $result = DB::connection($this->connectionName)->select($selectQuery);
             DB::connection($this->connectionName)->rollBack();
             return $result;
         } catch (\Exception $exception) {
@@ -48,5 +53,15 @@ abstract class BaseDatabase{
         throw ValidationException::withMessages([
             'solution' => $exception->getMessage(),
         ]);
+    }
+
+    public function getSelectForDatabase($request, Task $task) {
+        if($request->syntax == 'mysql') {
+            return $task->getMySqlSelect();
+        } else if($request->syntax == 'postgre') {
+            return $task->getPostgreSelect();
+        } else {
+            return $task->getMsSqlSelect();
+        }
     }
 }

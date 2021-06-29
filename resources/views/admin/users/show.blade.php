@@ -7,13 +7,17 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                                <img src="{{ asset($user->getPhoto() ?: \App\Models\User::DEFAULT_PHOTO_PATH) }}" alt="Admin" class="rounded-circle" width="150">
                                 <div class="mt-3">
-                                    <h4>John Doe</h4>
-                                    <p class="text-secondary mb-1">{{ __('messages.User') }}</p>
-                                    <p class="text-muted font-size-sm">{{ __('messages.ProblemsSolved') }}: 5</p>
-                                    <button class="btn btn-info">{{ __('messages.Edit') }}</button>
-                                    <button class="btn btn-outline-danger">{{ __('messages.Delete') }}</button>
+                                    <h4>{{ $user->getName() }}</h4>
+                                    <p class="text-secondary mb-1">{{ $user->role->getTranslation() }}</p>
+                                    <p class="text-muted font-size-sm">{{ __('messages.ProblemsSolved') }}: {{ $user->solved_tasks_count }}</p>
+                                    <a href="{{ route('admin.users.edit', $user->getId()) }}" class="btn btn-info">{{ __('messages.Edit') }}</a>
+                                    <button class="btn btn-outline-danger" class="btn btn-danger delete-button" data-toggle="modal"
+                                            data-target="#deleteModal" data-route="{{ route('admin.users.destroy', $user->getId()) }}">
+                                        {{ __('messages.Delete') }}
+                                    </button>
+                                    @include('admin.deleteModal', ['deleteTitle' => __('messages.AreYouSureToDeleteThisUser')])
                                 </div>
                             </div>
                         </div>
@@ -24,46 +28,46 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Full Name</h6>
+                                    <h6 class="mb-0">{{ __('messages.FullName') }}</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Kenneth Valdez
+                                    {{ $user->getFullName() }}
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email</h6>
+                                    <h6 class="mb-0">{{ __('messages.E-MailAddress') }}</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    fip@jukmuh.al
+                                    {{ $user->getEmail() }}
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Phone</h6>
+                                    <h6 class="mb-0">{{ __('messages.PhoneNumber') }}</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (239) 816-9029
+                                    {{ $user->getMainPhoneNumber() }}
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Mobile</h6>
+                                    <h6 class="mb-0">{{ __('messages.AdditionalPhoneNumber') }}</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    (320) 380-4539
+                                    {{ $user->getAdditionalPhoneNumber() }}
                                 </div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
+                                    <h6 class="mb-0">{{ __('messages.Address') }}</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Bay Area, San Francisco, CA
+                                    {{ $user->getAddress() }}
                                 </div>
                             </div>
                         </div>

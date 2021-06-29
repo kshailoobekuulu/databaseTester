@@ -100,6 +100,30 @@ class Task extends Model
         $this->mssql_solution = $mssqlSolution;
     }
 
+    public function getMySqlSelect() {
+        return $this->mysql_select_query;
+    }
+
+    public function getPostgreSelect() {
+        return $this->postgre_select_query;
+    }
+
+    public function getMsSqlSelect() {
+        return $this->mssql_select_query;
+    }
+
+    public function setMySqlSelect($query) {
+        $this->mysql_select_query = $query;
+    }
+
+    public function setPostgreSelect($query) {
+        $this->postgre_select_query = $query;
+    }
+
+    public function setMsSqlSelect($query) {
+        $this->mssql_select_query = $query;
+    }
+
     /**
      * @return bool
      */

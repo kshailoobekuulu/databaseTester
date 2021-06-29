@@ -44,7 +44,7 @@ class TaskService{
         $this->updateCategoriesOfTask($request, $task);
     }
 
-    public function updateFields(Request $request, $task){
+    public function updateFields(Request $request, Task $task){
         $task->setTitle($request->input('title'));
         $task->setDescription($request->input('description'));
         $task->setType($request->input('type'));
@@ -52,6 +52,11 @@ class TaskService{
         $task->setPostgreSolution($request->input('postgre_solution'));
         $task->setMsSqlSolution($request->input('mssql_solution'));
         $task->setActive($request->has('status'));
+        if ($request->input('type') != 'select') {
+            $task->setMySqlSelect($request->input('mysql_select'));
+            $task->setPostgreSelect($request->input('postgre_select'));
+            $task->setMsSqlSelect($request->input('mssql_select'));
+        }
         $task->save();
     }
 

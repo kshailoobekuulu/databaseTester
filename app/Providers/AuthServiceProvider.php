@@ -27,11 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('update-user-information', function (User $user) {
-            return $user->getRole() === User::SUPER_ADMIN;
+            return $user->role->getType() === User::SUPER_ADMIN;
         });
 
         Gate::define('administrate', function (User $user) {
-            return $user->getRole() == User::SUPER_ADMIN || $user->getRole() == User::ADMIN;
+            return $user->role->getType() == User::SUPER_ADMIN || $user->role->getType() == User::ADMIN;
         });
     }
 }

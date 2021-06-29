@@ -6,7 +6,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
+@import "~font-awesome/scss/font-awesome.scss";
 .border-sm-none{
     @media(min-width: 768px){
         border: none !important;
@@ -66,6 +66,67 @@ body{
     @media screen and(max-width: 576px) {
         height: 40px;
         width: 40px;
+    }
+}
+
+.change-image {
+    position: absolute;
+    inset: 0;
+    display: none;
+    background-color: black;
+    background-image: url("/img/save-image-icon.png");
+    opacity: 0.7;
+    background-size: cover;
+    overflow: hidden;
+
+    i {
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        font-size: 50px;
+    }
+}
+
+.profile-photo-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    &:hover {
+        .change-image {
+            display: block;
+        }
+    }
+}
+
+.upload-photo-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+
+    .upload-photo-container {
+        max-height: 90%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .close-modal {
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+        }
+
+        .image-preview {
+            max-width: 400px;
+            top: 50%;
+        }
+
+        .preview-container {
+            width: 400px;
+            height: 400px;
+        }
     }
 }
 
