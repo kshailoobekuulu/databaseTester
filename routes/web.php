@@ -12,11 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+//Admin Routes
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['verified', 'admin'])->group(function(){
+    Route::view('/', 'admin.mainPage')->name('mainPage');
+    Route::resource('tasks', 'TaskController');
+    Route::resource('categories', 'CategoryController')->except('show')->scoped(['category' => 'slug']);
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Frontend Routes
+Route::namespace('FrontEnd')->name('frontend.')->group(function (){
+    Route::resource('tasks', 'TaskController')->only(['index', 'show'])->middleware(['auth', 'verified']);
+    Route::post('submit-solution/{task}', 'TaskController@checkSolution')->name('submit-solution')->middleware(['auth', 'verified']);
+    Route::view('/', 'frontend.home')->name('home');
+});
+Auth::routes(['verify' => true]);
